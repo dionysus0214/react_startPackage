@@ -23,7 +23,8 @@ function App() {
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
-      <button onClick={ clickTitle }>클릭</button>
+      <button onClick={clickTitle}>클릭</button>
+
       <div className="list">
         {/* state 변경함수로 변경해야 재렌더링이 잘 일어남 */}
         <h3>{ title[0] } <span onClick={ () => { changeLikes(likes + 1) }}>👍</span> { likes } </h3>
@@ -40,6 +41,22 @@ function App() {
         <p>4월 25일 발행</p>
         <hr/>
       </div>
+
+      <Modal />
+    </div>
+  );
+}
+
+// component 만드는 법: 함수 만들고 이름 짓고 -> 축약을 원하는 HTML 넣고 -> 원하는 곳에서 <함수명 />
+// component 유의사항: 이름은 대문자, return() 안에 있는 건 태그 하나로 묶어야 함
+// 반복하는 HTML 덩어리, 자주 변경되는 HTML UI는 component로 만드는 게 좋음
+// 단 state 쓸 떄 복잡하다는 단점
+function Modal() {
+  return (
+    <div className="modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
