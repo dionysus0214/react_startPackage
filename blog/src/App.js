@@ -8,6 +8,7 @@ function App() {
   // [state 데이터, state 데이터 변경 함수]
   let [title, changeTitle] = useState(['강남 맛집 추천', '강남 오마카세', '강남역 데이트']); // ES6 destructuring
   let [likes, changeLikes] = useState(0);
+  let [modal, changeModal] = useState(false);
 
   function clickTitle() {
     // state의 deep copy해서 수정(원본은 수정 불가, 특히 object랑 array)
@@ -37,12 +38,16 @@ function App() {
         <hr/>
       </div>
       <div className="list">
-        <h3>{ title[2] }</h3>
+        <h3 onClick={ () => changeModal(!modal)}>{ title[2] }</h3>
         <p>4월 25일 발행</p>
         <hr/>
       </div>
 
-      <Modal />
+      {
+        modal === true
+        ? <Modal />
+        : null
+      }
     </div>
   );
 }
