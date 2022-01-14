@@ -26,23 +26,17 @@ function App() {
       </div>
       <button onClick={clickTitle}>클릭</button>
 
-      <div className="list">
-        {/* state 변경함수로 변경해야 재렌더링이 잘 일어남 */}
-        <h3>{ title[0] } <span onClick={ () => { changeLikes(likes + 1) }}>👍</span> { likes } </h3>
-        <p>2월 14일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3>{ title[1] }</h3>
-        <p>3월 8일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3 onClick={ () => changeModal(!modal)}>{ title[2] }</h3>
-        <p>4월 25일 발행</p>
-        <hr/>
-      </div>
-
+      {
+        title.map(function (a) {
+          return (
+            <div className="list">
+              <h3 onClick={ () => changeModal(!modal)}>{ a } <span onClick={ () => { changeLikes(likes + 1) }}>👍</span> { likes } </h3>
+              <p>2월 18일 발행</p>
+              <hr />
+            </div>
+          )
+        })
+      }
       {
         modal === true
         ? <Modal />
