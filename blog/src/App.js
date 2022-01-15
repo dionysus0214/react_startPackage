@@ -24,22 +24,23 @@ function App() {
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
-      <button onClick={clickTitle}>클릭</button>
 
       {
         title.map(function (a) {
           return (
             <div className="list">
-              <h3 onClick={ () => changeModal(!modal)}>{ a } <span onClick={ () => { changeLikes(likes + 1) }}>👍</span> { likes } </h3>
+              <h3 >{ a } <span onClick={ () => { changeLikes(likes + 1) }}>👍</span> { likes } </h3>
               <p>2월 18일 발행</p>
               <hr />
             </div>
           )
         })
       }
+
+      <button onClick={ () => changeModal(!modal)}>클릭</button>
       {
         modal === true
-        ? <Modal />
+        ? <Modal title={title} />
         : null
       }
     </div>
@@ -50,10 +51,10 @@ function App() {
 // component 유의사항: 이름은 대문자, return() 안에 있는 건 태그 하나로 묶어야 함
 // 반복하는 HTML 덩어리, 자주 변경되는 HTML UI는 component로 만드는 게 좋음
 // 단 state 쓸 떄 복잡하다는 단점
-function Modal() {
+function Modal(props) {
   return (
     <div className="modal">
-      <h2>제목</h2>
+      <h2>{ props.title }</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
