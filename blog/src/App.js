@@ -9,6 +9,7 @@ function App() {
   let [title, changeTitle] = useState(['강남 맛집 추천', '강남 오마카세', '강남역 데이트']); // ES6 destructuring
   let [likes, changeLikes] = useState(0);
   let [modal, changeModal] = useState(false);
+  let [clickedTitle, changeClickedTitle] = useState(0);
 
   function clickTitle() {
     // state의 deep copy해서 수정(원본은 수정 불가, 특히 object랑 array)
@@ -26,10 +27,14 @@ function App() {
       </div>
 
       {
-        title.map(function (a) {
+        title.map(function (a, i) {
           return (
             <div className="list">
-              <h3 >{ a } <span onClick={ () => { changeLikes(likes + 1) }}>👍</span> { likes } </h3>
+              <h3 onClick={() => { changeClickedTitle(i) }}>
+                {a}
+                <span onClick={() => { changeLikes(likes + 1) }}>👍</span>
+                {likes}
+              </h3>
               <p>2월 18일 발행</p>
               <hr />
             </div>
@@ -37,10 +42,10 @@ function App() {
         })
       }
 
-      <button onClick={ () => changeModal(!modal)}>클릭</button>
+      <button onClick={() => changeModal(!modal)}>클릭</button>
       {
         modal === true
-        ? <Modal title={title} />
+          ? <Modal title={title} clickedTitle={clickedTitle} />
         : null
       }
     </div>
@@ -54,11 +59,15 @@ function App() {
 function Modal(props) {
   return (
     <div className="modal">
-      <h2>{ props.title }</h2>
+      <h2>{ props.title[props.clickedTitle] }</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
   );
 }
+
+// UI 만드는 법
+// 1. UI와 관련된 중요 정보를 state에 저장
+// 2. state에 따라서 UI가 변경되도록 만듦
 
 export default App;
