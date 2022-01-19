@@ -10,6 +10,7 @@ function App() {
   let [likes, changeLikes] = useState(0);
   let [modal, changeModal] = useState(false);
   let [clickedTitle, changeClickedTitle] = useState(0);
+  let [input, changeInput] = useState('');
 
   function clickTitle() {
     // state의 deep copy해서 수정(원본은 수정 불가, 특히 object랑 array)
@@ -29,7 +30,7 @@ function App() {
       {
         title.map(function (a, i) {
           return (
-            <div className="list">
+            <div className="list" key={i}>
               <h3 onClick={() => { changeClickedTitle(i) }}>
                 {a}
                 <span onClick={() => { changeLikes(likes + 1) }}>👍</span>
@@ -42,6 +43,7 @@ function App() {
         })
       }
 
+      <input onChange={(e) => { changeInput(e.target.value) }} />
       <button onClick={() => changeModal(!modal)}>클릭</button>
       {
         modal === true
