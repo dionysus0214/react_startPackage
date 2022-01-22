@@ -43,7 +43,15 @@ function App() {
         })
       }
 
-      <input onChange={(e) => { changeInput(e.target.value) }} />
+      <div className="publish">
+        <input onChange={(e) => {changeInput(e.target.value)}}/>
+        <button onClick={() => {
+          var arrayCopy = [...title];
+          arrayCopy.unshift(input);
+          changeTitle(arrayCopy);
+        }}>저장</button>
+      </div>
+
       <button onClick={() => changeModal(!modal)}>클릭</button>
       {
         modal === true
