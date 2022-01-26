@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown, Card } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Card, Button } from 'react-bootstrap';
 import './App.css';
 
 function App() {
@@ -25,17 +25,36 @@ function App() {
         </Container>
       </Navbar>
 
-      <Card className="bg-dark text-white">
-        <Card.Img src="/background.jpg" alt="Card image" />
-        <Card.ImgOverlay>
-          <Card.Title>20% Season off</Card.Title>
+      <Card className="background" style={{ width: '100%' }} alt="Shoes">
+        <Card.Body>
+          <Card.Title>20% Season Off</Card.Title>
           <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
+            Some quick example text to build on the card title and make up the bulk of
+            the card's content.
           </Card.Text>
-          <Card.Text>Last updated 3 mins ago</Card.Text>
-        </Card.ImgOverlay>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
       </Card>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" alt="Shoes" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
+          <div className="col-md-4">
+            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%" alt="Shoes" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
+          <div className="col-md-4">
+            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%" alt="Shoes" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
