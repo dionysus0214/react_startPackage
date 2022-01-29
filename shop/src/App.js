@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Card, Button } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
+import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
   let [shoes, changeShoes] = useState(data);
@@ -28,26 +29,45 @@ function App() {
         </Container>
       </Navbar>
 
-      <Card className="background" style={{ width: '100%' }} alt="Shoes">
-        <Card.Body>
-          <Card.Title>20% Season Off</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of
-            the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
 
-      <div className="container">
-        <div className="row">
-          { 
-            shoes.map((a,i)=>{
-              return <ShoesCard shoes={shoes[i]} i={i} key={i} />
-            })
-          }
+
+      <Route exact path="/">
+        <Card className="background" style={{ width: '100%' }} alt="Shoes">
+          <Card.Body>
+            <Card.Title>20% Season Off</Card.Title>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the bulk of
+              the card's content.
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
+        <div className="container">
+          <div className="row">
+            { 
+              shoes.map((a,i)=>{
+                return <ShoesCard shoes={shoes[i]} i={i} key={i} />
+              })
+            }
+          </div>
         </div>
-      </div>
+      </Route>
+
+      <Route path="/detail">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+            </div>
+            <div className="col-md-6 mt-4">
+              <h4 className="pt-5">상품명</h4>
+              <p>상품 설명</p>
+              <p>120,000원</p>
+              <button className="btn btn-danger">주문하기</button> 
+            </div>
+          </div>
+        </div> 
+      </Route>
     </div>
   );
 }
