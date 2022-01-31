@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { Navbar, Container, Nav, Card, Button } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
-import Detail from './Detail.js';
+import Detail from './components/Detail.js';
 import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
   let [shoes, changeShoes] = useState(data);
+
   return (
     <div className="App">
       <Navbar bg="light" expand="lg">
@@ -46,12 +47,8 @@ function App() {
           </div>
         </Route>
 
-        <Route path="/detail">
-          <Detail />
-        </Route>
-
-        <Route path="/:id">
-          <div>아무거나 적었을 때</div>
+        <Route path="/detail/:id">
+          <Detail shoes={shoes} />
         </Route>
       </Switch>
     </div>
