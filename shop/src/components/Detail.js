@@ -1,16 +1,26 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+
+let Box = styled.div`
+  padding-top: 20px;
+`;
+let Title = styled.h4`
+  font-size: 20px;
+  color: ${ props => props.color };
+`;
 
 function Detail(props) {
   let { id } = useParams();
-  let clickedShoes = props.shoes.find(function (shoes) {
-    return shoes.id == id;
-  });
+  let clickedShoes = props.shoes.find((shoes) => shoes.id == id);
   let history = useHistory();
 
   return (
     <div className="container">
+      <Box>
+        <Title color="green">상세 페이지</Title>
+      </Box>
       <div className="row">
         <div className="col-md-6">
           <img src={ `https://codingapple1.github.io/shop/shoes${Number(id) + 1}.jpg` } width="100%" />
@@ -19,7 +29,7 @@ function Detail(props) {
           <h4 className="pt-5">{clickedShoes.title}</h4>
           <p>{clickedShoes.content}</p>
           <p>{clickedShoes.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger">주문하기</button>&nbsp;
           <button className="btn btn-secondary" onClick={() => {
             history.goBack();
             // history.push('/');
