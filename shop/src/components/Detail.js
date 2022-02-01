@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import '../css/Detail.scss';
 
 let Box = styled.div`
   padding-top: 20px;
@@ -19,8 +20,11 @@ function Detail(props) {
   return (
     <div className="container">
       <Box>
-        <Title color="green">상세 페이지</Title>
+        <Title className="red">상세 페이지</Title>
       </Box>
+      <div className="my-alert">
+        <p>재고가 얼마 남지 않았습니다.</p>
+      </div>
       <div className="row">
         <div className="col-md-6">
           <img src={ `https://codingapple1.github.io/shop/shoes${Number(id) + 1}.jpg` } width="100%" />

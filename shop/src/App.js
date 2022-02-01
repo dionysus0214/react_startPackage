@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, Card, Button } from 'react-bootstrap';
-import './App.css';
+import './css/App.css';
 import data from './data.js';
 import Detail from './components/Detail.js';
 import { Link, Route, Switch } from 'react-router-dom';
