@@ -1,8 +1,8 @@
 /*eslint-disable*/
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import '../css/Detail.scss';
+import '../css/Detail.css';
 
 let Box = styled.div`
   padding-top: 20px;
@@ -13,6 +13,14 @@ let Title = styled.h4`
 `;
 
 function Detail(props) {
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      changeAlert(false)
+    }, 2000);
+  });
+
+  let [alert, changeAlert] = useState(true);
+
   let { id } = useParams();
   let clickedShoes = props.shoes.find((shoes) => shoes.id == id);
   let history = useHistory();
@@ -22,9 +30,15 @@ function Detail(props) {
       <Box>
         <Title className="red">상세 페이지</Title>
       </Box>
-      <div className="my-alert">
-        <p>재고가 얼마 남지 않았습니다.</p>
-      </div>
+
+      {
+        alert === true
+        ? (<div className="my-alert">
+            <p>재고가 얼마 남지 않았습니다.</p>
+          </div>)
+          : null
+      }
+
       <div className="row">
         <div className="col-md-6">
           <img src={ `https://codingapple1.github.io/shop/shoes${Number(id) + 1}.jpg` } width="100%" />
