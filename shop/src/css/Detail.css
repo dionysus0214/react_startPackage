@@ -6,8 +6,8 @@ div {
   box-sizing: border-box;
 }
 
-.red {
-  color: #ff0000;
+.title {
+  color: navy;
 }
 
 .my-alert {

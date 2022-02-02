@@ -13,22 +13,23 @@ let Title = styled.h4`
 `;
 
 function Detail(props) {
+  let [alert, changeAlert] = useState(true);
   useEffect(() => {
     let timer = setTimeout(() => {
       changeAlert(false)
     }, 2000);
-  });
+    return () => { clearTimeout(timer) }
+  }, [alert]);
 
-  let [alert, changeAlert] = useState(true);
 
   let { id } = useParams();
-  let clickedShoes = props.shoes.find((shoes) => shoes.id == id);
   let history = useHistory();
+  let clickedShoes = props.shoes.find((shoes) => shoes.id == id);
 
   return (
     <div className="container">
       <Box>
-        <Title className="red">상세 페이지</Title>
+        <Title className="title">상세페이지</Title>
       </Box>
 
       {
