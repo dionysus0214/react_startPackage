@@ -1,3 +1,7 @@
+body {
+  text-align: center;
+}
+
 .background {
   background-image: url(./background.jpg);
   background-position: center;
