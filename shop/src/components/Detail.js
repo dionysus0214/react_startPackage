@@ -20,7 +20,7 @@ function Detail(props) {
     }, 2000);
     return () => { clearTimeout(timer) }
   }, [alert]);
-
+  // useEffect(()=>{},[]);에서 [] 사용하면 업데이트 시 재로딩 안 됨
 
   let { id } = useParams();
   let history = useHistory();

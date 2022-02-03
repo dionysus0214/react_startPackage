@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Shoe Shop</Navbar.Brand>
+          <Navbar.Brand href="#home">Shoes Shop</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -40,15 +40,16 @@ function App() {
           <div className="container">
             <div className="row">
               { 
-                shoes.map((a,i)=>{
+                shoes.map((a, i) => {
                   return <ShoesCard shoes={shoes[i]} i={i} key={i} />
                 })
               }
             </div>
             <button className="btn btn-primary" onClick={() => {
+              // axios.post('서버URL', { id: 'abcd', pw: 1234 });
               axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((res) => {
-                  console.log(res.data);
+                  changeShoes([...shoes, ...res.data]);
                 })
                 .catch((err) => {
                   console.log(err);
