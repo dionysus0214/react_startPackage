@@ -48,7 +48,10 @@ function Detail(props) {
           <h4 className="pt-5">{clickedShoes.title}</h4>
           <p>{clickedShoes.content}</p>
           <p>{clickedShoes.price}</p>
-          <button className="btn btn-danger">주문하기</button>&nbsp;
+          <StockInfo stock={props.stock} />
+          <button className="btn btn-primary" onClick={() => {
+            props.changeStock([9, 15, 12]);
+          }}>주문하기</button>&nbsp;
           <button className="btn btn-secondary" onClick={() => {
             history.goBack();
             // history.push('/');
@@ -56,6 +59,12 @@ function Detail(props) {
         </div>
       </div>
     </div> 
+  )
+}
+
+function StockInfo(props) {
+  return (
+    <p>재고: {props.stock[0]}</p>
   )
 }
 
