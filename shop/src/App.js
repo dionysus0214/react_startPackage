@@ -1,11 +1,13 @@
 /*eslint-disable*/
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Navbar, Container, Nav, Card, Button } from 'react-bootstrap';
 import './css/App.css';
 import data from './data.js';
 import Detail from './components/Detail.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+
+let StockContext = React.createContext();
 
 function App() {
   let [shoes, changeShoes] = useState(data);
@@ -39,13 +41,15 @@ function App() {
             </Card.Body>
           </Card>
           <div className="container">
-            <div className="row">
-              { 
-                shoes.map((a, i) => {
-                  return <ShoesCard shoes={shoes[i]} i={i} key={i} />
-                })
-              }
-            </div>
+            <StockContext.Provider value={stock}>
+              <div className="row">
+                { 
+                  shoes.map((a, i) => {
+                    return <ShoesCard shoes={shoes[i]} i={i} key={i} />
+                  })
+                }
+              </div>
+            </StockContext.Provider>
             <button className="btn btn-primary" onClick={() => {
               // axios.post('서버URL', { id: 'abcd', pw: 1234 });
               axios.get('https://codingapple1.github.io/shop/data2.json')
@@ -73,7 +77,20 @@ function ShoesCard(props) {
       <img src={ `https://codingapple1.github.io/shop/shoes${props.i + 1}.jpg` } width="100%" />
       <h4>{ props.shoes.title }</h4>
       <p>{ props.shoes.content } & { props.shoes.price }</p>
+      <Test />
     </div>
+  )
+}
+
+// Context 만들기
+// 1 Reacti.createContext()로 범위 생선
+// 2. 같은 값을 공유할 HTML을 <범위>로 묶음
+// 3. useContext(범위)로 공유된 값 사용
+function Test() {
+  let stock = useContext(StockContext);
+
+  return (
+    <p>재고: {stock}</p>
   )
 }
 
