@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../css/Detail.css';
 
@@ -14,6 +15,8 @@ let Title = styled.h4`
 
 function Detail(props) {
   let [alert, changeAlert] = useState(true);
+  let [tab, changeTab] = useState(0);
+
   useEffect(() => {
     let timer = setTimeout(() => {
       changeAlert(false)
@@ -58,8 +61,30 @@ function Detail(props) {
           }}>뒤로가기</button>
         </div>
       </div>
+
+      <Nav variant="tabs" defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={() => {
+            changeTab(0)
+          }}>Active</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={() => {
+            changeTab(1)
+          }}>Option 2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab} />
     </div> 
   )
+}
+
+function TabContent(props) {
+  if (props.tab === 0) {
+    return <div>0번째 내용입니다.</div>;
+  } else if (props.tab === 1) {
+    return <div>1번째 내용입니다.</div>;
+  }
 }
 
 function StockInfo(props) {
