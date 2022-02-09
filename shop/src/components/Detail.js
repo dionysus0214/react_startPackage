@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../css/Detail.css';
+import {CSSTransition} from 'react-transition-group';
 
 let Box = styled.div`
   padding-top: 20px;
@@ -16,6 +17,7 @@ let Title = styled.h4`
 function Detail(props) {
   let [alert, changeAlert] = useState(true);
   let [tab, changeTab] = useState(0);
+  let [click, changeClick] = useState(false);
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -74,12 +76,18 @@ function Detail(props) {
           }}>Option 2</Nav.Link>
         </Nav.Item>
       </Nav>
-      <TabContent tab={tab} />
+      <CSSTransition in={click} classNames="wow" timeout={500}>
+        <TabContent tab={tab} changeClick={changeClick} />
+      </CSSTransition>
     </div> 
   )
 }
 
 function TabContent(props) {
+  useEffect( ()=>{
+    props.changeClick(true);
+  });
+
   if (props.tab === 0) {
     return <div>0번째 내용입니다.</div>;
   } else if (props.tab === 1) {
