@@ -4,6 +4,7 @@ import { Navbar, Container, Nav, Card, Button } from 'react-bootstrap';
 import './css/App.css';
 import data from './data.js';
 import Detail from './components/Detail.js';
+import Cart from './components/Cart.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
@@ -65,6 +66,10 @@ function App() {
 
         <Route path="/detail/:id">
           <Detail shoes={shoes} stock={stock} changeStock={changeStock} />
+        </Route>
+
+        <Route path="/cart">
+          <Cart />
         </Route>
       </Switch>
     </div>
