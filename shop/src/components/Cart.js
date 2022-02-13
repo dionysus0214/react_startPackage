@@ -12,21 +12,26 @@ function Cart(props) {
           <th>수량</th>
           <th>변경</th>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>{ props.state[0].name }</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-        </tr>
+        { props.state.map((a,i) => {
+          return (
+            <tr key={i}>
+              <td>{ a.id }</td>
+              <td>{ a.name }</td>
+              <td>{ a.qnt }</td>
+              <td><button onClick={()=>{ }}> + </button></td>
+            </tr>
+            )
+          })
+        }
       </Table>
     </div>
   )
 }
 
-function test(state) {
+function stateToProps(state) {
   return {
     state: state
   }
 }
 
-export default connect(test)(Cart);
+export default connect(stateToProps)(Cart);

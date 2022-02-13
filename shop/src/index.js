@@ -7,7 +7,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-let store = createStore(() => { return [{id: 0, name: 'nice shoes', qnt: 3}]});
+let originState = [
+  { id: 0, name: 'nice shoes', qnt: 3 },
+  { id: 1, name: 'red shoes', qnt: 4 }
+];
+
+function reducer(state = originState, action) {
+  return state;
+}
+
+let store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,7 +29,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
