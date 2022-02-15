@@ -6,23 +6,30 @@ function Cart(props) {
   return (
     <div>
       <Table responsive>
-        <tr>
-          <th>#</th>
-          <th>상품명</th>
-          <th>수량</th>
-          <th>변경</th>
-        </tr>
-        { props.state.map((a,i) => {
-          return (
-            <tr key={i}>
-              <td>{ a.id }</td>
-              <td>{ a.name }</td>
-              <td>{ a.qnt }</td>
-              <td><button onClick={()=>{ }}> + </button></td>
-            </tr>
-            )
-          })
-        }
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>변경</th>
+          </tr>
+        </thead>
+        <tbody>
+          { props.state.map((a,i) => {
+            return (
+              <tr key={i}>
+                <td>{ a.id }</td>
+                <td>{ a.name }</td>
+                <td>{ a.qnt }</td>
+                <td>
+                  <button onClick={() => { props.dispatch({ type: 'increase' }) }}> + </button>                
+                  <button onClick={() => { props.dispatch({ type: 'decrease' }) }}> - </button>
+                </td>
+              </tr>
+              )
+            })
+          }
+        </tbody>
       </Table>
     </div>
   )

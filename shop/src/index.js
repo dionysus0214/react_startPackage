@@ -13,7 +13,20 @@ let originState = [
 ];
 
 function reducer(state = originState, action) {
-  return state;
+  let copy = [...state];
+  if (action.type === 'increase') {
+    copy[0].qnt++;
+    return copy;
+  } else if (action.type === 'decrease') {
+    copy[0].qnt--;
+    if (copy[0].qnt < 0) {
+      copy[0].qnt = 0;
+      alert('음수는 노노');
+    }
+    return copy;
+  } else {
+    return state;
+  }
 }
 
 let store = createStore(reducer);
