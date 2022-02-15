@@ -22,8 +22,8 @@ function Cart(props) {
                 <td>{ a.name }</td>
                 <td>{ a.qnt }</td>
                 <td>
-                  <button onClick={() => { props.dispatch({ type: 'increase' }) }}> + </button>                
-                  <button onClick={() => { props.dispatch({ type: 'decrease' }) }}> - </button>
+                  <button onClick={() => { props.dispatch({ type: 'increase' }) }}>+</button>                
+                  <button onClick={() => { props.dispatch({ type: 'decrease' }) }}>-</button>
                 </td>
               </tr>
               )
@@ -31,13 +31,22 @@ function Cart(props) {
           }
         </tbody>
       </Table>
+      
+      { props.openAlert === true
+        ? (<div className="my-alert">
+            <p>지금 구매하시면 신규 할인 20%</p>
+            <button onClick={() => { props.dispatch({ type: 'close' }) }}>닫기</button>
+          </div>)
+        : null
+      }
     </div>
   )
 }
 
 function stateToProps(state) {
   return {
-    state: state
+    state: state.reducer,
+    openAlert: state.reducer2
   }
 }
 

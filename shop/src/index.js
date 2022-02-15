@@ -5,12 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
 let originState = [
   { id: 0, name: 'nice shoes', qnt: 3 },
   { id: 1, name: 'red shoes', qnt: 4 }
 ];
+
+let alertOriginState = true;
 
 function reducer(state = originState, action) {
   let copy = [...state];
@@ -29,7 +31,16 @@ function reducer(state = originState, action) {
   }
 }
 
-let store = createStore(reducer);
+function reducer2(state = alertOriginState, action) {
+  if (action.type === 'close') {
+    state = false;
+    return state;
+  } else {
+    return state;
+  }
+}
+
+let store = createStore(combineReducers({reducer, reducer2}));
 
 ReactDOM.render(
   <React.StrictMode>
