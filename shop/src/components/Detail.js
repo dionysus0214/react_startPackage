@@ -4,7 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../css/Detail.css';
-import {CSSTransition} from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 let Box = styled.div`
   padding-top: 20px;
@@ -56,6 +57,8 @@ function Detail(props) {
           <StockInfo stock={props.stock} />
           <button className="btn btn-primary" onClick={() => {
             props.changeStock([9, 15, 12]);
+            props.dispatch({ type: 'addItem', payload: {id: 2, name: 'new shoes', qnt: 10} });
+            history.push('/cart');
           }}>주문하기</button>&nbsp;
           <button className="btn btn-secondary" onClick={() => {
             history.goBack();
@@ -101,4 +104,11 @@ function StockInfo(props) {
   )
 }
 
-export default Detail;
+function stateToProps(state) {
+  return {
+    state: state.reducer,
+    openAlert: state.reducer2
+  }
+}
+
+export default connect(stateToProps)(Detail);

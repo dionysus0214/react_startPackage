@@ -17,7 +17,10 @@ let alertOriginState = true;
 
 function reducer(state = originState, action) {
   let copy = [...state];
-  if (action.type === 'increase') {
+  if (action.type === 'addItem') {
+    copy.push(action.payload);
+    return copy;
+  } else if (action.type === 'increase') {
     copy[0].qnt++;
     return copy;
   } else if (action.type === 'decrease') {
