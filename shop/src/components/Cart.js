@@ -1,8 +1,11 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Cart(props) {
+  let state = useSelector((state) => state);
+  let dispatch = useDispatch();
+
   return (
     <div>
       <Table responsive>
@@ -15,15 +18,15 @@ function Cart(props) {
           </tr>
         </thead>
         <tbody>
-          { props.state.map((a,i) => {
+          { state.reducer.map((a,i) => {
             return (
               <tr key={i}>
                 <td>{ a.id }</td>
                 <td>{ a.name }</td>
                 <td>{ a.qnt }</td>
                 <td>
-                  <button onClick={() => { props.dispatch({ type: 'increase' }) }}>+</button>                
-                  <button onClick={() => { props.dispatch({ type: 'decrease' }) }}>-</button>
+                  <button onClick={() => { dispatch({ type: 'increase' }) }}>+</button>                
+                  <button onClick={() => { dispatch({ type: 'decrease' }) }}>-</button>
                 </td>
               </tr>
               )
@@ -43,11 +46,4 @@ function Cart(props) {
   )
 }
 
-function stateToProps(state) {
-  return {
-    state: state.reducer,
-    openAlert: state.reducer2
-  }
-}
-
-export default connect(stateToProps)(Cart);
+export default Cart;
