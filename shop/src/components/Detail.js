@@ -57,7 +57,7 @@ function Detail(props) {
           <StockInfo stock={props.stock} />
           <button className="btn btn-primary" onClick={() => {
             props.changeStock([9, 15, 12]);
-            props.dispatch({ type: 'addItem', payload: {id: 2, name: 'new shoes', qnt: 10} });
+            props.dispatch({ type: 'addItem', payload: { id: clickedShoes.id, name: clickedShoes.title, qnt: 1 } });
             history.push('/cart');
           }}>주문하기</button>&nbsp;
           <button className="btn btn-secondary" onClick={() => {

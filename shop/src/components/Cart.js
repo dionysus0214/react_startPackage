@@ -25,8 +25,8 @@ function Cart(props) {
                 <td>{ a.name }</td>
                 <td>{ a.qnt }</td>
                 <td>
-                  <button onClick={() => { dispatch({ type: 'increase' }) }}>+</button>                
-                  <button onClick={() => { dispatch({ type: 'decrease' }) }}>-</button>
+                  <button onClick={() => { dispatch({ type: 'increase', data: a.id }) }}>+</button>                
+                  <button onClick={() => { dispatch({ type: 'decrease', data: a.id }) }}>-</button>
                 </td>
               </tr>
               )

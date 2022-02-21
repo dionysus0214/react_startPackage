@@ -17,14 +17,20 @@ let alertOriginState = true;
 
 function reducer(state = originState, action) {
   let copy = [...state];
+  console.log(state);
   if (action.type === 'addItem') {
-    copy.push(action.payload);
-    return copy;
+    let alreadyHas = state.findIndex((a) => a.id === action.data.id);
+    if(alreadyHas >= 0) {
+      copy[alreadyHas].qnt++;
+    } else {
+      copy.push(action.payload);
+      return copy;
+    }
   } else if (action.type === 'increase') {
-    copy[0].qnt++;
+    copy[action.data].qnt++;
     return copy;
   } else if (action.type === 'decrease') {
-    copy[0].qnt--;
+    copy[action.data].qnt--;
     if (copy[0].qnt < 0) {
       copy[0].qnt = 0;
       alert('음수는 노노');
