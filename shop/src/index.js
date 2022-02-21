@@ -17,13 +17,12 @@ let alertOriginState = true;
 
 function reducer(state = originState, action) {
   let copy = [...state];
-  console.log(state);
   if (action.type === 'addItem') {
     let alreadyHas = state.findIndex((a) => a.id === action.data.id);
     if(alreadyHas >= 0) {
       copy[alreadyHas].qnt++;
     } else {
-      copy.push(action.payload);
+      copy.push(action.data);
       return copy;
     }
   } else if (action.type === 'increase') {
