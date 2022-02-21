@@ -1,10 +1,10 @@
 /*eslint-disable*/
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, lazy, Suspense } from 'react';
 import { Navbar, Container, Nav, Card, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import './css/App.css';
 import data from './data.js';
-import Detail from './components/Detail.js';
+let Detail = lazy(() => import('./components/Detail.js'));
 import Cart from './components/Cart.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
@@ -66,7 +66,9 @@ function App() {
         </Route>
 
         <Route path="/detail/:id">
-          <Detail shoes={shoes} stock={stock} changeStock={changeStock} />
+          <Suspense fallback={<div>loading</div>}>
+            <Detail shoes={shoes} stock={stock} changeStock={changeStock} />
+          </Suspense>
         </Route>
 
         <Route path="/cart">

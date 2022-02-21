@@ -6,6 +6,10 @@ function Cart(props) {
   let state = useSelector((state) => state);
   let dispatch = useDispatch();
 
+  function closeButton() {
+    props.dispatch({ type: 'close' });
+  }
+
   return (
     <div>
       <Table responsive>
@@ -38,7 +42,7 @@ function Cart(props) {
       { props.openAlert === true
         ? (<div className="my-alert">
             <p>지금 구매하시면 신규 할인 20%</p>
-            <button onClick={() => { props.dispatch({ type: 'close' }) }}>닫기</button>
+            <button onClick={() => { closeButton() }}>닫기</button>
           </div>)
         : null
       }
