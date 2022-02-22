@@ -1,9 +1,11 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 function Cart(props) {
   let state = useSelector((state) => state);
+  console.log(state);
   let dispatch = useDispatch();
 
   function closeButton() {
@@ -50,4 +52,9 @@ function Cart(props) {
   )
 }
 
-export default Cart;
+function stateToProps(state){
+  return {
+    openAlert : state.reducer2
+  }
+}
+export default connect(stateToProps)(Cart) 
