@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect, memo } from 'react';
 import { Table } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 
 function Cart(props) {
   let state = useSelector((state) => state);
-  console.log(state);
   let dispatch = useDispatch();
 
   function closeButton() {
@@ -48,13 +47,34 @@ function Cart(props) {
           </div>)
         : null
       }
+      <Parent name="kim" age="20" />
     </div>
   )
 }
+
+function Parent(props) {
+  return (
+    <div>
+      <Child1 name={props.name} />
+      <Child2 age={props.age} /> 
+    </div>
+  )
+}
+
+function Child1() {
+  useEffect(()=>{ console.log('렌더링됨1') });
+  return <div>1111</div>
+}
+
+let Child2 = memo(function Child2() {
+  useEffect(()=>{ console.log('렌더링됨2') });
+  return <div>2222</div>
+})
 
 function stateToProps(state){
   return {
     openAlert : state.reducer2
   }
 }
+
 export default connect(stateToProps)(Cart) 
