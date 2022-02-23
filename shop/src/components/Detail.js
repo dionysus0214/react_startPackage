@@ -16,9 +16,26 @@ let Title = styled.h4`
 `;
 
 function Detail(props) {
+  let { id } = useParams();
+  let history = useHistory();
+  let clickedShoes = props.shoes.find((shoes) => shoes.id == id);
+
   let [alert, changeAlert] = useState(true);
   let [tab, changeTab] = useState(0);
   let [click, changeClick] = useState(false);
+
+  useEffect(() => {
+    let arr = localStorage.getItem('watched');
+    if(arr == null) {
+      arr = [];
+    } else {
+      arr = JSON.parse(arr);
+    } 
+    arr.push(id);
+    arr = new Set(arr);
+    arr = [...arr];
+    localStorage.setItem('watched', JSON.stringify(arr));
+  }, []);
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -27,10 +44,6 @@ function Detail(props) {
     return () => { clearTimeout(timer) }
   }, [alert]);
   // useEffect(()=>{},[]);에서 [] 사용하면 업데이트 시 재로딩 안 됨
-
-  let { id } = useParams();
-  let history = useHistory();
-  let clickedShoes = props.shoes.find((shoes) => shoes.id == id);
 
   return (
     <div className="container">
